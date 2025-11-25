@@ -265,6 +265,13 @@
   let globalDisabled = false;
   let activeInstance = null;
 
+  function removeInstance(instance) {
+    const idx = instances.indexOf(instance);
+    if (idx !== -1) {
+      instances.splice(idx, 1);
+    }
+  }
+
   const globalEventListeners = {
     show: [],
     hide: []
@@ -948,6 +955,10 @@
       this.disable();
       this._listeners.show = [];
       this._listeners.hide = [];
+      if (activeInstance === this) {
+        activeInstance = null;
+      }
+      removeInstance(this);
       this.element = null;
     }
   }
@@ -1214,8 +1225,24 @@
     }
   }
 
+  function shouldAutoInit() {
+    if (typeof document === "undefined") return false;
+
+    if (typeof window !== "undefined" && "LAUNCHPOP_AUTO_INIT" in window) {
+      return safeParseBool(window.LAUNCHPOP_AUTO_INIT, true);
+    }
+
+    const script = document.currentScript;
+    if (script && script.hasAttribute("data-launchpop-auto-init")) {
+      return safeParseBool(script.getAttribute("data-launchpop-auto-init"), true);
+    }
+
+    return true;
+  }
+
   // Auto-init on DOMContentLoaded if script is included in browser
-  if (typeof document !== "undefined") {
+  const autoInitEnabled = shouldAutoInit();
+  if (autoInitEnabled && typeof document !== "undefined") {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", function () {
         init({});
