@@ -7,7 +7,7 @@ LaunchPop is a lightweight, framework-agnostic JavaScript library for showing ac
 Include the script and mark up a popup with `data-launchpop-id`:
 
 ```html
-<div id="newsletter" data-launchpop-id="newsletter" aria-label="Newsletter signup">
+<div id="newsletter" data-launchpop-id="newsletter" aria-label="Newsletter signup" aria-role="modal" aria-hidden="true">
   <button data-launchpop-close>&times;</button>
   ...
 </div>
@@ -28,6 +28,62 @@ By default the library auto-initializes on `DOMContentLoaded` and connects any e
   launchpop.init();
 </script>
 ```
+
+## Core Concepts
+Each popup is represented by a launchpop instance, created via:
+- DOM attributes on an element: `data-launchpop-id="some-id"`
+- Or directly via `launchpop.register(...)`
+
+Each instance has:
+- Configuration data:
+  - `id` - Used for frequency limits and click triggers. The same id may be used by multiple popups
+  - `element` - The modal element to be shown/hidden
+  - Information about the **triggers** and **limits**
+  - `role` - The aria role to use for the modal
+  - `closeOnEsc` - Whether the modal should be closed when the escape key is pressed
+  - `active` - Whether the instance is currently displayed
+  - `shown` - Whether the instance has been shown
+  - `disabled` - Whether the instance is currently disabled
+- Functions
+  - `show(context)` - Shows the popup. This may be used to show the popup even if it is currently disabled. Pass in a context object to use it in the event handlers or exclude it to use the default context
+  - `hide(context)` - Hides the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
+  - `disable(context)` - Disables the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
+  - `restore(context)` - Enables the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
+  - `destroy(closeAndRemoveDomNode)` - Permanently deletes the instance and cleans up all related resources. If `closeAndRemoveDomNode` is true, the modal element will be removed from the DOM. Note that if the popup is currently active and `closeAndRemoveDomNode` is NOT true, then the modal may remain displayed even after being cleaned up
+  - `tryShow(context)` - Checks if all of the triggers and limits have been satisfied and this instance is not disabled and has not already been shown, in which case it will show the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
+  - `on(eventName, handler)` - Attach an event listener to the instance. The built-in events are:
+    - `show` - Fired immediately after the modal is displayed
+    - `hide` - Fired immediately after the modal is hidden
+    - `disable` - Fired immediately after the modal is disabled. Note that this is NOT fired when all modals are disabled using `launchpop.disable()`
+    - `restore` - Fired immediately after the modal is restored. Note that this is NOT fired when all modals are restored using `launchpop.restore()`
+    - `destroy` - Fired immediately before the modal is destroyed
+  - `off(eventName, handler)` - Detach an event listener from the instance
+  - `emit(eventName, context)` - Executes the event handlers for the specified event using the provided context
+
+Additionally, the global launchpop object has the following methods:
+- `init(options)` - Initializes the launchpop library with the specified options. Possible options include:
+  - `root` - The root node to check for launchpop instances to initialize. Defaults to the document body
+  - `autoAttachTriggers` - Whether or not click event triggers should automatically be attached to new instances by default
+  - `footerSelector` - The query selector to use for the document footer, used by popups with scroll_relative_to_footer set to true
+  - `breakpoints` - An object containing the small/medium/large breakpoints to use when interpreting the breakpoint limits
+    - `smallMax` - The largest screen width to interpret as a "small" device
+    - `mediumMax` - The largest screen width to interpret as a "medium" device
+- `register(options)` -
+- `disable(context)` - Globally disbales all launchpop instances
+- `restore()` - Globally restores all launchpop instances
+- `on(eventName, handler)` - Attach an event listener to the global launchpop object. The built-in events are:
+  - `show` - Triggered after any launchpop instance is shown
+  - `hide` - Triggered after any launchpop instance is hidden
+  - `disable` - Triggered after `launchpop.disable()` is run
+  - `restore` - Triggered after `launchpop.restore()` is run
+- `off` - Detach an event listener from the instance
+- `getDefaults()` - Gets the global settings for all launchpop objects
+  - `autoAttachTriggers`
+  - `footerSelector`
+  - `breakpoints`
+    - `smallMax`
+    - `mediumMax`
+- `setDefaults(partial)` - Updates the global settings for all launchpop objects
 
 ## Registering popups in JavaScript
 
@@ -107,3 +163,5 @@ Tests run in jsdom, so no browser is required. If you add new features or change
 ## DOM-only initialization
 
 If you rely entirely on markup, call `launchpop.init()` to scan for `[data-launchpop-id]` elements. When `autoAttachTriggers` is true, elements with `data-launchpop-triggers="<id>"` are automatically bound to matching popups.
+
+For best results, add aria-role="modal" and aria-hidden="true" to the main popup element, which will help with accessibility for content that will be hidden on pageload.
