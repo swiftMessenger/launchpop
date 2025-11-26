@@ -95,6 +95,15 @@ launchpop.on("show", ({ instance, trigger }) => {
 });
 ```
 
+## Testing
+
+LaunchPop ships with a small Jest suite to guard against regressions in trigger logic and DOM parsing.
+
+1. Install dependencies: `npm install`
+2. Run the suite: `npm test`
+
+Tests run in jsdom, so no browser is required. If you add new features or change defaults, include a focused test that covers the behavior to keep future changes safe.
+
 ## DOM-only initialization
 
 If you rely entirely on markup, call `launchpop.init()` to scan for `[data-launchpop-id]` elements. When `autoAttachTriggers` is true, elements with `data-launchpop-triggers="<id>"` are automatically bound to matching popups.
