@@ -61,17 +61,6 @@
     }
   }
 
-  function getFooterElement(customSelector) {
-    if (typeof document === "undefined") return null;
-
-    if (customSelector) {
-      const el = document.querySelector(customSelector);
-      if (el) return el;
-      // fall through to default footer if none matched
-    }
-    return document.querySelector("footer");
-  }
-
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value));
   }
@@ -91,12 +80,30 @@
     );
   }
 
+   function getFooterElement(footerSelector) {
+    if (typeof document === "undefined") return null;
+
+    if(footerSelector) {
+      const el = document.querySelector(footerSelector);
+      if (el) return el;
+      // fall through to default footer if none matched
+    }
+    if(globalOptions.footerSelector && globalOptions.footerSelector != footerSelector) {
+      footerSelector = globalOptions.footerSelector;
+      const el = document.querySelector(footerSelector);
+      if (el) return el;
+      // fall through to footer element
+    }
+    return footerSelector == "footer"? null : document.querySelector("footer");
+  }
+
   // ---------------------------------------------------------------------------
   // Global options & breakpoints
   // ---------------------------------------------------------------------------
 
   const globalOptions = {
     autoAttachTriggers: false,
+    footerSelector: 'footer',
     breakpoints: {
       // small: < 768px
       // medium: 768–1199px
@@ -326,10 +333,10 @@
 
       // Wire config.onShow / onHide into listeners directly
       if (typeof config.onShow === "function") {
-        this.on("show", config.onShow);
-      }
+        this._listeners.show.push(config.onShow);
+      };
       if (typeof config.onHide === "function") {
-        this.on("hide", config.onHide);
+        this._listeners.hide.push(config.onHide);
       }
 
       this._initAccessibility();
@@ -1164,10 +1171,6 @@
     }
 
     initFromDom(root);
-
-    if (globalOptions.autoAttachTriggers) {
-      autoAttachTriggersFromDom(root);
-    }
   }
 
   function disableAll() {
@@ -1200,6 +1203,7 @@
     // shallow clone is sufficient for current shape
     return {
       autoAttachTriggers: globalOptions.autoAttachTriggers,
+      footerSelector: globalOptions.footerSelector,
       breakpoints: {
         smallMax: globalOptions.breakpoints.smallMax,
         mediumMax: globalOptions.breakpoints.mediumMax
@@ -1212,6 +1216,10 @@
 
     if ("autoAttachTriggers" in partial) {
       globalOptions.autoAttachTriggers = !!partial.autoAttachTriggers;
+    }
+
+    if("footerSelector" in partial) {
+      globalOptions.footerSelector = partial.footerSelector;
     }
 
     if (partial.breakpoints && typeof partial.breakpoints === "object") {
