@@ -18,7 +18,9 @@ This repository contains the LaunchPop JavaScript library. Follow these guardrai
 - Update `AGENTS.md` when appropriate after making significant changes, such as when adding new build steps or dependencies.
 
 ## Testing & validation
-- This project currently does not have any automated tests. These will need to be added in the future. Once the automated tests are added, we need to switch to a test-driven-development approach (write tests first, verify that the test fails, then write code that fixes the test, then verify that the test passes).
+- Automated tests live in `__tests__/` and run with `npm test` (Jest + jsdom). Install dependencies with `npm install` before running.
+- When adding features or fixing bugs, write a failing test first that captures the expected behavior, then implement the change and confirm the test passes.
+- Keep tests deterministic: mock timers for delay/inactivity behavior, stub storage when asserting frequency limits, and avoid relying on real timeouts or network calls.
 
 ## Pull requests
 - Summarize user-visible changes and important implementation notes in the PR body. Mention any manual testing performed or that needs to be performed.
