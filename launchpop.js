@@ -239,12 +239,11 @@
             now - this.lastActivity >= popup.inactivityMs
           ) {
             popup.triggerState.inactivity = true;
-            popup._lastTriggerContext = {
+            popup.tryShow({
               trigger: "inactivity",
               nativeEvent: null,
               source: "auto"
-            };
-            popup.tryShow();
+            });
           }
         });
       }, 1000);
@@ -301,6 +300,7 @@
       this.closeOnEsc = config.closeOnEsc !== false; // default true
 
       // Internal state
+      this.active = false;
       this.shown = false;
       this.blockedByFrequencyCap = false;
       this.disabled = false;
@@ -323,7 +323,6 @@
       this._clickTargets = [];
       this._clickHandler = null;
       this._boundCloseHandler = null;
-      this._lastTriggerContext = null;
 
       // Per-instance event listeners
       this._listeners = {
@@ -354,12 +353,11 @@
       const hasClickTrigger = !!this.triggersConfig.click_selector;
 
       if (!hasAutoTrigger && !hasClickTrigger) {
-        this._lastTriggerContext = {
+        this.tryShow({
           trigger: "immediate",
           nativeEvent: null,
           source: "auto"
-        };
-        this.tryShow();
+        });
       }
 
       if (globalDisabled) {
@@ -392,33 +390,37 @@
       return this;
     }
 
-    _emit(eventName, context) {
+    emit(eventName, context) {
       const payload = {
         type: eventName,
         instance: this,
         trigger: (context && context.trigger) || null,
         nativeEvent: (context && context.nativeEvent) || null,
-        timestamp: nowMs(),
+        timestamp: (context && context.timestamp) || nowMs(),
         context: context || null
       };
 
-      const local = this._listeners[eventName] || [];
-      local.forEach((fn) => {
-        try {
-          fn(payload);
-        } catch (e) {
-          console.error("[launchpop] instance listener error:", e);
-        }
-      });
-
-      const global = globalEventListeners[eventName] || [];
-      global.forEach((fn) => {
-        try {
-          fn(payload);
-        } catch (e) {
-          console.error("[launchpop] global listener error:", e);
-        }
-      });
+      if(this._listeners[eventName]) {
+        const local = this._listeners[eventName].slice(); //use a copy in case the event listeners are modified during execution
+        local.forEach((fn) => {
+          try {
+            fn(payload);
+          } catch (e) {
+            console.error("[launchpop] instance listener error:", e);
+          }
+        });
+      }
+      
+      if(globalEventListeners[eventName]) {
+        const global = globalEventListeners[eventName].slice(); //use a copy in case the event listeners are modified during execution
+        global.forEach((fn) => {
+          try {
+            fn(payload);
+          } catch (e) {
+            console.error("[launchpop] global listener error:", e);
+          }
+        });
+      }
     }
 
     // -----------------------------------------------------------------------
@@ -472,12 +474,11 @@
         this._delayTimeoutId = setTimeout(() => {
           if (this.disabled || globalDisabled) return;
           this.triggerState.delay = true;
-          this._lastTriggerContext = {
+          this.tryShow({
             trigger: "delay",
             nativeEvent: null,
             source: "auto"
-          };
-          this.tryShow();
+          });
         }, seconds * 1000);
       }
 
@@ -661,14 +662,12 @@
       }
 
       if (changed) {
-        this._lastTriggerContext = {
+        this.tryShow({
           trigger: "scroll",
           nativeEvent: nativeEvent || null,
           source: "auto"
-        };
+        });
       }
-
-      this.tryShow();
     }
 
     handleExitIntent(event) {
@@ -683,12 +682,11 @@
 
       if (this.triggersConfig.exit_intent) {
         this.triggerState.exitIntent = true;
-        this._lastTriggerContext = {
+        this.tryShow({
           trigger: "exit_intent",
           nativeEvent: event || null,
           source: "auto"
-        };
-        this.tryShow();
+        });
       }
     }
 
@@ -783,7 +781,7 @@
       }
     }
 
-    tryShow() {
+    tryShow(context) {
       if (
         this.shown ||
         this.blockedByFrequencyCap ||
@@ -807,14 +805,11 @@
         return;
       }
 
-      const context =
-        this._lastTriggerContext || {
+      this.show(context || {
           trigger: "auto",
           nativeEvent: null,
           source: "auto"
-        };
-
-      this.show(context);
+        });
     }
 
     _attachKeydownHandler() {
@@ -869,7 +864,7 @@
     // -----------------------------------------------------------------------
 
     show(context) {
-      if (!this.element || this.disabled || globalDisabled) return;
+      if (!this.element) return;
 
       // Prevent multiple popups visible at once
       if (activeInstance && activeInstance !== this) {
@@ -888,6 +883,7 @@
       this.element.setAttribute("data-launchpop-visible", "true");
       this.element.setAttribute("aria-hidden", "false");
       this.element.classList.add("launchpop-visible");
+      this.active = true;
 
       if (typeof document !== "undefined") {
         this._lastActiveElement = document.activeElement;
@@ -903,7 +899,7 @@
 
       this._attachKeydownHandler();
 
-      this._emit(
+      this.emit(
         "show",
         context || {
           trigger: "api",
@@ -919,7 +915,8 @@
       this.element.removeAttribute("data-launchpop-visible");
       this.element.setAttribute("aria-hidden", "true");
       this.element.classList.remove("launchpop-visible");
-
+      this.active = false;
+      
       if (activeInstance === this) {
         activeInstance = null;
       }
@@ -930,7 +927,7 @@
         this._lastActiveElement.focus();
       }
 
-      this._emit(
+      this.emit(
         "hide",
         context || {
           trigger: "api",
@@ -944,31 +941,66 @@
     // Enable / disable / destroy
     // -----------------------------------------------------------------------
 
-    disable() {
+    disable(context) {
       this.disabled = true;
       this._cleanupNonClickTriggers();
       this._detachClickTriggers();
       this._detachCloseHandlers();
       this._detachKeydownHandler();
+
+      this.emit(
+        "disable",
+        context || {
+          trigger: "api",
+          nativeEvent: null,
+          source: "api"
+        }
+      );
     }
 
-    restore() {
+    restore(context) {
       if (!this.element) return;
+      var wasDisabled = this.disabled;
       this.disabled = false;
       this._setupTriggers();
+
+      if(wasDisabled) {
+        this.emit(
+          "restore",
+          context || {
+            trigger: "api",
+            nativeEvent: null,
+            source: "api"
+          }
+        );
+      }
     }
 
-    destroy() {
+    destroy(removeDomNode) {
+      this.destroy = function() { }; //in case destroy is called multiple times for some reason
+      
+      this.emit(
+        "destroy",
+        context || {
+          trigger: "api",
+          nativeEvent: null,
+          source: "api"
+        }
+      );
       this.disable();
-      this._listeners.show = [];
-      this._listeners.hide = [];
+      if(this.element && removeDomNode) {
+        this.element.remove();
+      }
+      this.element = null;
+      if (this._lastActiveElement && this._lastActiveElement.focus) {
+        this._lastActiveElement.focus();
+      }
+      this._listeners = {};
       if (activeInstance === this) {
         activeInstance = null;
       }
       removeInstance(this);
-      this.element = null;
     }
-  }
 
   // ---------------------------------------------------------------------------
   // Auto-attach click triggers: data-launchpop-triggers="id"
@@ -1154,11 +1186,15 @@
       console.warn("[launchpop] init() requires a DOM environment.");
       return;
     }
+    options = options || {};
 
-    const root = options && options.root ? options.root : document;
     globalOptions.autoAttachTriggers = !!(
       options && options.autoAttachTriggers
     );
+
+    if(options && options.footerSelector) {
+      globalOptions.footerSelector = options.footerSelector;
+    }
 
     if (options && options.breakpoints) {
       const bp = options.breakpoints;
@@ -1170,32 +1206,67 @@
       }
     }
 
-    initFromDom(root);
+    initFromDom(options && options.root ? options.root : document);
   }
 
-  function disableAll() {
+  function emitGlobal(eventName, context) {
+    const payload = {
+        type: eventName,
+        instance: null,
+        trigger: (context && context.trigger) || null,
+        nativeEvent: (context && context.nativeEvent) || null,
+        timestamp: (context && context.timestamp) || nowMs(),
+        context: context || null
+      };
+    
+      if(globalEventListeners[eventName]) {
+        const global = globalEventListeners[eventName].slice(); //use a copy in case the event listeners are modified during execution
+        global.forEach((fn) => {
+          try {
+            fn(payload);
+          } catch (e) {
+            console.error("[launchpop] global listener error:", e);
+          }
+        });
+      }
+  }
+
+  function disableAll(context) {
     globalDisabled = true;
     instances.forEach((inst) => {
-      if (inst.shown) {
+      if (inst.active) {
         inst.hide({
           trigger: "global-disable",
           nativeEvent: null,
-          source: "api"
+          source: "api",
+          context: context
         });
       }
-      inst.disable();
+      inst.disable(context);
+    });
+
+    emitGlobal("disable", context || {
+       trigger: "global-disable",
+        nativeEvent: null,
+        source: "api"
     });
   }
 
-  function restoreAll() {
+  function restoreAll(context) {
     globalDisabled = false;
-    instances.forEach((inst) => inst.restore());
+    instances.forEach((inst) => inst.restore(context));
 
     if (globalOptions.autoAttachTriggers) {
       autoAttachTriggersFromDom(
         typeof document !== "undefined" ? document : undefined
       );
     }
+
+    emitGlobal("restore", context || {
+       trigger: "global-restore",
+        nativeEvent: null,
+        source: "api"
+    });
   }
 
   // Expose defaults (globalOptions) in a safe way
@@ -1218,7 +1289,7 @@
       globalOptions.autoAttachTriggers = !!partial.autoAttachTriggers;
     }
 
-    if("footerSelector" in partial) {
+    if(partial.footerSelector) {
       globalOptions.footerSelector = partial.footerSelector;
     }
 
