@@ -1,3 +1,5 @@
 /artifacts/exports-from-cms/
 /artifacts/imports-to-cms/
 /backup/
+.import-stamp.*.json
+.superpowers/
