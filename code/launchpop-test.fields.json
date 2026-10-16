@@ -1,0 +1,17 @@
+[
+  {
+    "Type": "group",
+    "Label": "Popup",
+    "Collapsible": true,
+    "Collapsed": false,
+    "Fields": [
+      {
+        "Type": "datastoreitem",
+        "FieldID": "launchpop_item",
+        "Label": "LaunchPop",
+        "Subtext": "The popup this page opens. Leave it empty for a page with no popup.",
+        "DatastoreGUID": "LaunchPop"
+      }
+    ]
+  }
+]

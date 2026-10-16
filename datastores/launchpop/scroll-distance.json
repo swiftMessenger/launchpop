@@ -1,0 +1,11 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Scroll distance",
+  "Title": "Scroll distance",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "scroll-distance",
+  "scroll_pixels": "400"
+}

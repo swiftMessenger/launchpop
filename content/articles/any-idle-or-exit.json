@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Any idle or exit",
+  "Title": "Any idle or exit",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/any-idle-or-exit",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Any idle or exit",
+  "MetaDescription": "Any mode: idle or exit opens the dialog.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Idle is 10 seconds, and exit is on. Leave through the top and it opens immediately. Staying still for 10 seconds opens it too.</p>",
+  "launchpop_item": "Any idle or exit"
+}

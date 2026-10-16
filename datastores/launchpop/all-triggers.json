@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "All triggers",
+  "Title": "All triggers",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "all",
+  "id": "all-triggers",
+  "scroll_percent": "20",
+  "exit_intent": true
+}

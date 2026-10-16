@@ -1,0 +1,11 @@
+{
+  "8a9e345f-7026-493b-902f-ee5da728d372": "code/_footer.json",
+  "3c6a30c5-ed80-4553-b92c-9c8d1a50711f": "code/_header.json",
+  "473fb7ae-6074-4b79-a3ce-661069614eb2": "code/launchpop/v1/_launchpop.json",
+  "4b97d441-8521-4acb-bb29-209655af4eae": "datastores/launchpop.json",
+  "9b8d5029-a7e0-4878-ba35-5677c6aeabf4": "content/images/1131w-4v_igoozgpc.webp.json",
+  "31a5ed2d-6ed6-4251-afbb-a627f5be7c90": "code/launchpop/v1/launchpop.js.json",
+  "02473b35-0176-4145-8ce4-e22ae9f02a79": "content/articles/home.json",
+  "c4695b84-a828-402b-b41a-bdcd37fcb2e0": "content/forms/form.json",
+  "7027a4ba-cde2-4d5d-80df-45187461b793": "code/launchpop/v1/launchpop.scss.json"
+}

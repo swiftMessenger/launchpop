@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Page count 3",
+  "Title": "Page count 3",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/page-count-3",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Page count 3",
+  "MetaDescription": "Opens only on the third page of the visit.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Arrive here from page count 2. The dialog opens because this is the third page of the visit.</p>",
+  "launchpop_item": "Page count 3"
+}

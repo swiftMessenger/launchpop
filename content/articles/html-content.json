@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "HTML content",
+  "Title": "HTML content",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/html-content",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "HTML content",
+  "MetaDescription": "Opens on load with HTML in the dialog.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The dialog body is the HTML field, not the image.</p>",
+  "launchpop_item": "HTML content"
+}

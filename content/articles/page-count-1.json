@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Page count 1",
+  "Title": "Page count 1",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/page-count-1",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Page count 1",
+  "MetaDescription": "Opens when this is the first page of the visit.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Start this page in a fresh tab. The dialog opens because the visit is on page 1, and its limit allows only page 1. Then open <a href=\"/launchpop/page-count-2\">Page count 2</a>.</p>",
+  "launchpop_item": "Page count 1"
+}

@@ -1,0 +1,10 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Shared limit first",
+  "Title": "Shared limit first",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "shared-demo"
+}

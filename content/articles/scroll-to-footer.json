@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Scroll to footer",
+  "Title": "Scroll to footer",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/scroll-to-footer",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Scroll to footer",
+  "MetaDescription": "Opens after scrolling 40 percent of the way to the footer.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll toward the footer. The 40 percent mark is measured to the footer, not the bottom of the page.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Scroll to footer"
+}

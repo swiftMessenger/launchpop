@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "All scroll and delay",
+  "Title": "All scroll and delay",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "all",
+  "id": "all-scroll-and-delay",
+  "scroll_percent": "15",
+  "delay_seconds": "5"
+}

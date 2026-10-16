@@ -1,0 +1,245 @@
+{
+  "Template": {
+    "/_footer.liquid": [
+      "code/_footer.json"
+    ],
+    "/_header.liquid": [
+      "code/_header.json"
+    ],
+    "/launchpop/v1/_launchpop.liquid": [
+      "code/launchpop/v1/_launchpop.json"
+    ],
+    "/launchpop-test": [
+      "code/launchpop-test.json"
+    ],
+    "/generic-page": [
+      "code/generic-page.json"
+    ]
+  },
+  "Datastore": {
+    "LaunchPop": [
+      "datastores/launchpop.json"
+    ]
+  },
+  "Javascript": {
+    "/launchpop/v1/launchpop.js": [
+      "code/launchpop/v1/launchpop.js.json"
+    ]
+  },
+  "ImagePreset": {
+    "launchpop-modal": [
+      "content/image-presets/launchpop-modal.json"
+    ]
+  },
+  "DatastoreItem": {
+    "Default": [
+      "datastores/launchpop/default.json"
+    ],
+    "Default 2": [
+      "datastores/launchpop/default-2.json"
+    ],
+    "Open on load": [
+      "datastores/launchpop/open-on-load.json"
+    ],
+    "Delay": [
+      "datastores/launchpop/delay.json"
+    ],
+    "Scroll percent": [
+      "datastores/launchpop/scroll-percent.json"
+    ],
+    "Scroll to footer": [
+      "datastores/launchpop/scroll-to-footer.json"
+    ],
+    "Scroll distance": [
+      "datastores/launchpop/scroll-distance.json"
+    ],
+    "Exit intent": [
+      "datastores/launchpop/exit-intent.json"
+    ],
+    "Idle": [
+      "datastores/launchpop/idle.json"
+    ],
+    "Any trigger": [
+      "datastores/launchpop/any-trigger.json"
+    ],
+    "All triggers": [
+      "datastores/launchpop/all-triggers.json"
+    ],
+    "Zero is unset": [
+      "datastores/launchpop/zero-is-unset.json"
+    ],
+    "HTML content": [
+      "datastores/launchpop/html-content.json"
+    ],
+    "Form content": [
+      "datastores/launchpop/form-content.json"
+    ],
+    "Hide small": [
+      "datastores/launchpop/hide-small.json"
+    ],
+    "Hide large": [
+      "datastores/launchpop/hide-large.json"
+    ],
+    "Once per session": [
+      "datastores/launchpop/once-per-session.json"
+    ],
+    "Shared limit first": [
+      "datastores/launchpop/shared-limit-first.json"
+    ],
+    "Shared limit second": [
+      "datastores/launchpop/shared-limit-second.json"
+    ],
+    "Page count 1": [
+      "datastores/launchpop/page-count-1.json"
+    ],
+    "Page count 2": [
+      "datastores/launchpop/page-count-2.json"
+    ],
+    "Page count 3": [
+      "datastores/launchpop/page-count-3.json"
+    ],
+    "Any delay or exit": [
+      "datastores/launchpop/any-delay-or-exit.json"
+    ],
+    "Any idle or exit": [
+      "datastores/launchpop/any-idle-or-exit.json"
+    ],
+    "Any distance or delay": [
+      "datastores/launchpop/any-distance-or-delay.json"
+    ],
+    "Any of three": [
+      "datastores/launchpop/any-of-three.json"
+    ],
+    "All scroll and delay": [
+      "datastores/launchpop/all-scroll-and-delay.json"
+    ],
+    "All delay and exit": [
+      "datastores/launchpop/all-delay-and-exit.json"
+    ],
+    "All idle and exit": [
+      "datastores/launchpop/all-idle-and-exit.json"
+    ],
+    "All distance and delay": [
+      "datastores/launchpop/all-distance-and-delay.json"
+    ],
+    "All of three": [
+      "datastores/launchpop/all-of-three.json"
+    ]
+  },
+  "Image": {
+    "1131w-4V_IgoozgPc.webp": [
+      "content/images/1131w-4v_igoozgpc.webp.json"
+    ]
+  },
+  "Article": {
+    "All triggers": [
+      "content/articles/all-triggers.json"
+    ],
+    "Any trigger": [
+      "content/articles/any-trigger.json"
+    ],
+    "Default 2": [
+      "content/articles/default-2.json"
+    ],
+    "Default": [
+      "content/articles/default.json"
+    ],
+    "Delay": [
+      "content/articles/delay.json"
+    ],
+    "Exit intent": [
+      "content/articles/exit-intent.json"
+    ],
+    "Form content": [
+      "content/articles/form-content.json"
+    ],
+    "Hide large": [
+      "content/articles/hide-large.json"
+    ],
+    "Hide small": [
+      "content/articles/hide-small.json"
+    ],
+    "HTML content": [
+      "content/articles/html-content.json"
+    ],
+    "Idle": [
+      "content/articles/idle.json"
+    ],
+    "Once per session": [
+      "content/articles/once-per-session.json"
+    ],
+    "Open on load": [
+      "content/articles/open-on-load.json"
+    ],
+    "Page count 1": [
+      "content/articles/page-count-1.json"
+    ],
+    "Page count 2": [
+      "content/articles/page-count-2.json"
+    ],
+    "Page count 3": [
+      "content/articles/page-count-3.json"
+    ],
+    "Scroll distance": [
+      "content/articles/scroll-distance.json"
+    ],
+    "Scroll percent": [
+      "content/articles/scroll-percent.json"
+    ],
+    "Scroll to footer": [
+      "content/articles/scroll-to-footer.json"
+    ],
+    "Shared limit first": [
+      "content/articles/shared-limit-first.json"
+    ],
+    "Shared limit second": [
+      "content/articles/shared-limit-second.json"
+    ],
+    "Zero is unset": [
+      "content/articles/zero-is-unset.json"
+    ],
+    "Any delay or exit": [
+      "content/articles/any-delay-or-exit.json"
+    ],
+    "Any idle or exit": [
+      "content/articles/any-idle-or-exit.json"
+    ],
+    "Any distance or delay": [
+      "content/articles/any-distance-or-delay.json"
+    ],
+    "Any of three": [
+      "content/articles/any-of-three.json"
+    ],
+    "All scroll and delay": [
+      "content/articles/all-scroll-and-delay.json"
+    ],
+    "All delay and exit": [
+      "content/articles/all-delay-and-exit.json"
+    ],
+    "All idle and exit": [
+      "content/articles/all-idle-and-exit.json"
+    ],
+    "All distance and delay": [
+      "content/articles/all-distance-and-delay.json"
+    ],
+    "All of three": [
+      "content/articles/all-of-three.json"
+    ],
+    "Documentation": [
+      "content/articles/documentation.json"
+    ],
+    "Home": [
+      "content/articles/home.json"
+    ]
+  },
+  "Form": {
+    "form": [
+      "content/forms/form.json"
+    ]
+  },
+  "Stylesheet": {
+    "/launchpop/v1/launchpop.scss": [
+      "code/launchpop/v1/launchpop.scss.json"
+    ]
+  }
+}

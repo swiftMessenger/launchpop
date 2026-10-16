@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Default",
+  "Title": "Default",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/sample-default",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Default",
+  "MetaDescription": "Opens on a 30 percent scroll or on exit.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 30 percent of the page, or move the pointer out through the top. The first of those opens the dialog.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Default"
+}

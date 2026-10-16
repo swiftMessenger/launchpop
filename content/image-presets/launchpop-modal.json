@@ -1,0 +1,7 @@
+{
+  "Name": "launchpop-modal",
+  "Title": "LaunchPop modal",
+  "Code": "launchpop-modal",
+  "QueryString": "maxheight=600&maxwidth=650",
+  "$ObjectType": "ImagePreset"
+}

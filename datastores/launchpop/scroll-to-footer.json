@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Scroll to footer",
+  "Title": "Scroll to footer",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "scroll-footer",
+  "scroll_percent": "40",
+  "scroll_relative_to_footer": true
+}

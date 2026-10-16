@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All scroll and delay",
+  "Title": "All scroll and delay",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-scroll-and-delay",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All scroll and delay",
+  "MetaDescription": "All mode: both the scroll and the delay are required.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 15 percent and wait 5 seconds. Scrolling before 5 seconds stays closed. Waiting 5 seconds without scrolling stays closed.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "All scroll and delay"
+}

@@ -1,0 +1,17 @@
+{%- comment -%}
+    LaunchPop test page. The article body is content_html. launchpop_item chooses the popup.
+    Inputs:
+        entity
+{%- endcomment -%}
+{%- include "/_header.liquid" -%}
+<div class="container py-5">
+    <p><a href="/">All tests</a></p>
+    <h1 class="mb-3">{{ entity.title }}</h1>
+    {%- if entity.content_html.is_valid -%}
+        {{- entity.content_html -}}
+    {%- endif -%}
+    {%- if entity.launchpop_item.is_valid -%}
+        {%- include "/launchpop/v1/_launchpop.liquid" item:entity.launchpop_item -%}
+    {%- endif -%}
+</div>
+{%- include "/_footer.liquid" -%}

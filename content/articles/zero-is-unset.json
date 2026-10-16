@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Zero is unset",
+  "Title": "Zero is unset",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/zero-is-unset",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Zero is unset",
+  "MetaDescription": "A delay of 0 opens on load.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The delay field is blank. A blank delay is not a trigger, so the dialog opens on load.</p>",
+  "launchpop_item": "Zero is unset"
+}

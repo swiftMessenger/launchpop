@@ -1,0 +1,13 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "All of three",
+  "Title": "All of three",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "all",
+  "id": "all-of-three",
+  "scroll_percent": "15",
+  "delay_seconds": "5",
+  "exit_intent": true
+}

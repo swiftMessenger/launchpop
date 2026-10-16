@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All triggers",
+  "Title": "All triggers",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-triggers",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All triggers",
+  "MetaDescription": "Opens only after both the scroll and the exit.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll about 20 percent, then move the pointer out through the top. The dialog stays closed until both have happened.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "All triggers"
+}

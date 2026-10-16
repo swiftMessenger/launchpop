@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Any distance or delay",
+  "Title": "Any distance or delay",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "any-distance-or-delay",
+  "scroll_pixels": "300",
+  "delay_seconds": "20"
+}

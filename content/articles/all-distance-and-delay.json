@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All distance and delay",
+  "Title": "All distance and delay",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-distance-and-delay",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All distance and delay",
+  "MetaDescription": "All mode: both the pixel scroll and the delay are required.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 200 pixels and wait 5 seconds. Either one alone stays closed.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "All distance and delay"
+}

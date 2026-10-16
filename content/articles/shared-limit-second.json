@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Shared limit second",
+  "Title": "Shared limit second",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/shared-limit-second",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Shared limit second",
+  "MetaDescription": "Stays closed for 60 minutes after the shared id opens.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Open <a href=\"/launchpop/shared-limit-first\">Shared limit, first</a> before this page. This dialog uses the same id and a 60 minute limit, so it stays closed.</p>",
+  "launchpop_item": "Shared limit second"
+}

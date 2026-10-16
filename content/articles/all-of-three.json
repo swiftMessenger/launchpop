@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All of three",
+  "Title": "All of three",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-of-three",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All of three",
+  "MetaDescription": "All mode: scroll, delay, and exit are all required.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 15 percent, wait 5 seconds, and leave through the top. Any two of those leave the dialog closed.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "All of three"
+}

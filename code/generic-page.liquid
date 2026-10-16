@@ -1,0 +1,13 @@
+{%- comment -%}
+    Generic article page. The title and body come from the article.
+    Inputs:
+        none
+{%- endcomment -%}
+{%- include "/_header.liquid" -%}
+<div class="container py-5">
+    <h1 class="mb-4">{{ entity.title }}</h1>
+    {%- if entity.content_html.is_valid -%}
+        {{- entity.content_html -}}
+    {%- endif -%}
+</div>
+{%- include "/_footer.liquid" -%}

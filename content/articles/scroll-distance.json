@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Scroll distance",
+  "Title": "Scroll distance",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/scroll-distance",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Scroll distance",
+  "MetaDescription": "Opens after scrolling 400 pixels.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 400 pixels. The dialog opens on that distance.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Scroll distance"
+}

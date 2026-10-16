@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Any of three",
+  "Title": "Any of three",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/any-of-three",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Any of three",
+  "MetaDescription": "Any mode: one of scroll, delay, or exit opens the dialog.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 25 percent, wait 12 seconds, or leave through the top. Any one of those opens the dialog. The other two do not have to happen.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Any of three"
+}

@@ -1,0 +1,30 @@
+{
+  "GUID": "c4695b84-a828-402b-b41a-bdcd37fcb2e0",
+  "Name": "form",
+  "Title": "form",
+  "Fields": [
+    {
+      "Type": "text",
+      "Placeholder": "Email Address",
+      "Validators": [
+        {
+          "Type": "email"
+        }
+      ],
+      "IsRequired": true,
+      "IsReadonly": false,
+      "RequiredMessage": "This field is required",
+      "FieldID": "email",
+      "Label": "Email"
+    },
+    {
+      "Type": "submit",
+      "ButtonValue": "Subscribe",
+      "TextIsHtml": false,
+      "ButtonText": "Subscribe",
+      "FieldID": "submit_button",
+      "Label": "submit_button"
+    }
+  ],
+  "$ObjectType": "Form"
+}

@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Any idle or exit",
+  "Title": "Any idle or exit",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "any-idle-or-exit",
+  "inactivity_seconds": "10",
+  "exit_intent": true
+}

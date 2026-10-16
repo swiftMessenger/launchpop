@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Exit intent",
+  "Title": "Exit intent",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/exit-intent",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Exit intent",
+  "MetaDescription": "Opens when the pointer leaves through the top of the window.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Move the pointer out through the top of the window. The dialog opens then.</p>",
+  "launchpop_item": "Exit intent"
+}

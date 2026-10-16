@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Any delay or exit",
+  "Title": "Any delay or exit",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "any-delay-or-exit",
+  "delay_seconds": "15",
+  "exit_intent": true
+}

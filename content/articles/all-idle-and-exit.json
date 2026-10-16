@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All idle and exit",
+  "Title": "All idle and exit",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-idle-and-exit",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All idle and exit",
+  "MetaDescription": "All mode: both idle and exit are required.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Stay still for 5 seconds and leave through the top. Doing only one of those stays closed.</p>",
+  "launchpop_item": "All idle and exit"
+}

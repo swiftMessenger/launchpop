@@ -1,0 +1,468 @@
+{
+  "GUID": "4b97d441-8521-4acb-bb29-209655af4eae",
+  "Name": "LaunchPop",
+  "Title": "LaunchPop Modal",
+  "DatastoreType": "launchpop",
+  "CreatePageByDefault": false,
+  "DefaultRootPath": "",
+  "Fields": [
+    {
+      "Type": "text",
+      "Placeholder": "",
+      "IsRequired": false,
+      "IsReadonly": false,
+      "RequiredMessage": "Popup ID is required and must be unique",
+      "FieldID": "id",
+      "Label": "ID",
+      "Subtext": "Use a custom ID if you would like multiple launchpop modals to share the same limits (eg: do not show if the other modal was displayed in the past 10 minutes)"
+    },
+    {
+      "Type": "group",
+      "Fields": [
+        {
+          "Type": "radio",
+          "Options": "image:Image;html:HTML Content;form:Form",
+          "Delimiter": ";",
+          "ValueDelimiter": ":",
+          "DefaultValue": "image",
+          "IsRequired": true,
+          "IsReadonly": false,
+          "FieldID": "content_type",
+          "Label": "Content Type"
+        },
+        {
+          "Type": "image",
+          "IsRequired": true,
+          "IsReadonly": false,
+          "FieldID": "popup_image",
+          "Label": "Promotional Image",
+          "Condition": {
+            "Type": "eq",
+            "FieldID": "content_type",
+            "Invert": false,
+            "Value": "image"
+          }
+        },
+        {
+          "Type": "html",
+          "IsRequired": true,
+          "IsReadonly": false,
+          "FieldID": "html_content",
+          "Label": "HTML Content",
+          "Condition": {
+            "Type": "eq",
+            "FieldID": "content_type",
+            "Invert": false,
+            "Value": "html"
+          }
+        },
+        {
+          "Type": "text",
+          "Placeholder": "e.g., Subscribe to Our Newsletter",
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "form_title",
+          "Label": "Modal Title",
+          "Condition": {
+            "Type": "eq",
+            "FieldID": "content_type",
+            "Invert": false,
+            "Value": "form"
+          }
+        },
+        {
+          "Type": "textarea",
+          "Placeholder": "Add a brief description",
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "form_description",
+          "Label": "Modal Description",
+          "Condition": {
+            "Type": "eq",
+            "FieldID": "content_type",
+            "Invert": false,
+            "Value": "form"
+          }
+        },
+        {
+          "Type": "form",
+          "IsRequired": true,
+          "IsReadonly": false,
+          "FieldID": "popup_form",
+          "Label": "Form",
+          "Condition": {
+            "Type": "eq",
+            "FieldID": "content_type",
+            "Invert": false,
+            "Value": "form"
+          }
+        }
+      ],
+      "Collapsible": true,
+      "Collapsed": true,
+      "Label": "Content"
+    },
+    {
+      "Type": "group",
+      "Fields": [
+        {
+          "Type": "label",
+          "FieldID": "no_triggers",
+          "Label": "If no triggers are specified, the modal will be displayed on page load",
+          "Condition": {
+            "Type": "and",
+            "Invert": false,
+            "Conditions": [
+              {
+                "Type": "exists",
+                "FieldID": "scroll_percent",
+                "Invert": true
+              },
+              {
+                "Type": "exists",
+                "FieldID": "scroll_pixels",
+                "Invert": true
+              },
+              {
+                "Type": "exists",
+                "FieldID": "delay_seconds",
+                "Invert": true
+              },
+              {
+                "Type": "exists",
+                "FieldID": "exit_intent",
+                "Invert": true
+              },
+              {
+                "Type": "exists",
+                "FieldID": "inactivity_seconds",
+                "Invert": true
+              }
+            ]
+          }
+        },
+        {
+          "Type": "text",
+          "Placeholder": "50",
+          "DefaultValue": "",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "100"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "RequiredMessage": "This field is required",
+          "FieldID": "scroll_percent",
+          "Label": "Show when % scrolled",
+          "Subtext": "You can also set a pixel distance. When to open decides whether the first of them opens the popup, or both are required."
+        },
+        {
+          "Type": "checkbox",
+          "DefaultValue": false,
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "scroll_relative_to_footer",
+          "Label": "Scroll Relative To Footer",
+          "Subtext": "If checked, the bottom of the page will be considered as the top of the footer, so showing when 100% scrolled means scrolling to the footer",
+          "Condition": {
+            "Type": "exists",
+            "FieldID": "scroll_percent",
+            "Invert": false
+          }
+        },
+        {
+          "Type": "text",
+          "Placeholder": "300",
+          "DefaultValue": "",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "3000"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "RequiredMessage": "This field is required",
+          "FieldID": "scroll_pixels",
+          "Label": "Show after scrolling px",
+          "Subtext": "You can also set a percentage. When to open decides whether the first of them opens the popup, or both are required."
+        },
+        {
+          "Type": "text",
+          "Placeholder": "5",
+          "DefaultValue": "",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "120"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "delay_seconds",
+          "Label": "Delay after page load (in seconds)"
+        },
+        {
+          "Type": "checkbox",
+          "DefaultValue": false,
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "exit_intent",
+          "Label": "Show when the user tries to leave",
+          "Subtext": "This is determined as when the user moves their cursor to the top of the browser window, and is typically only effective on desktop devices"
+        },
+        {
+          "Type": "text",
+          "Placeholder": "30",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "1800"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "inactivity_seconds",
+          "Label": "Show after the user has been idle for X seconds"
+        },
+        {
+          "Type": "radio",
+          "Options": "any:When any trigger happens;all:When every trigger has happened",
+          "Delimiter": ";",
+          "ValueDelimiter": ":",
+          "DefaultValue": "any",
+          "IsRequired": true,
+          "IsReadonly": false,
+          "RequiredMessage": "Choose when the modal should open.",
+          "FieldID": "trigger_mode",
+          "Label": "When to open",
+          "Subtext": "Shown after two or more triggers are set. Any opens on the first of those. All waits until every one of them has happened.",
+          "Condition": {
+            "Type": "or",
+            "Invert": false,
+            "Conditions": [
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_percent", "Invert": false },
+                  { "Type": "exists", "FieldID": "scroll_pixels", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_percent", "Invert": false },
+                  { "Type": "exists", "FieldID": "delay_seconds", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_percent", "Invert": false },
+                  { "Type": "exists", "FieldID": "exit_intent", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_percent", "Invert": false },
+                  { "Type": "exists", "FieldID": "inactivity_seconds", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_pixels", "Invert": false },
+                  { "Type": "exists", "FieldID": "delay_seconds", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_pixels", "Invert": false },
+                  { "Type": "exists", "FieldID": "exit_intent", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "scroll_pixels", "Invert": false },
+                  { "Type": "exists", "FieldID": "inactivity_seconds", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "delay_seconds", "Invert": false },
+                  { "Type": "exists", "FieldID": "exit_intent", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "delay_seconds", "Invert": false },
+                  { "Type": "exists", "FieldID": "inactivity_seconds", "Invert": false }
+                ]
+              },
+              {
+                "Type": "and",
+                "Invert": false,
+                "Conditions": [
+                  { "Type": "exists", "FieldID": "exit_intent", "Invert": false },
+                  { "Type": "exists", "FieldID": "inactivity_seconds", "Invert": false }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "Collapsible": true,
+      "Collapsed": true,
+      "Label": "Triggers",
+      "Subtext": "Leave every trigger empty to open the modal on page load."
+    },
+    {
+      "Type": "group",
+      "Fields": [
+        {
+          "Type": "text",
+          "Placeholder": "2",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "100"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "min_pages",
+          "Label": "Do not show before page",
+          "Subtext": "Counts this page. 2 means the popup can show on the second page of the visit, and not on the first. Leave blank to allow the first page."
+        },
+        {
+          "Type": "text",
+          "Placeholder": "3",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "100"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "max_pages",
+          "Label": "Do not show after page",
+          "Subtext": "Counts this page. 3 means the popup can show through the third page, and not on the fourth."
+        },
+        {
+          "Type": "text",
+          "Placeholder": "10",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "minutes_limit",
+          "Label": "Minutes between shows",
+          "Subtext": "The popup stays hidden when the ID above was shown more recently than this during the current visit. Every tab shares that history. It stays in the browser and is not sent to the server. A blank ID uses the item name."
+        },
+        {
+          "Type": "text",
+          "Placeholder": "1",
+          "Validators": [
+            {
+              "Type": "number"
+            },
+            {
+              "Type": "gt",
+              "Value": "0"
+            },
+            {
+              "Type": "lte",
+              "Value": "10"
+            }
+          ],
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "shown_limit",
+          "Label": "Maximum shows",
+          "Subtext": "The popup stays hidden after the ID above has opened this many times during the current visit. Every tab shares that count. It stays in the browser and is not sent to the server. A blank ID uses the item name."
+        },
+        {
+          "Type": "checkboxlist",
+          "Options": "small;medium;large",
+          "Delimiter": ";",
+          "DefaultValue": "",
+          "IsRequired": false,
+          "IsReadonly": false,
+          "FieldID": "breakpoints_to_exclude",
+          "Label": "Do not show on responsive screen sizes"
+        }
+      ],
+      "Collapsible": true,
+      "Collapsed": true,
+      "Label": "Limits",
+      "Subtext": "Page numbers include this page and apply only when the visitor has allowed a session. Minutes and maximum shows limit automatic opens. A click can still open the popup. When to open does not change these limits."
+    }
+  ],
+  "$ObjectType": "Datastore"
+}

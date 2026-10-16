@@ -1,0 +1,11 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Once per session",
+  "Title": "Once per session",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "once-per-session",
+  "shown_limit": "1"
+}

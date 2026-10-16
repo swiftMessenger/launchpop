@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Scroll percent",
+  "Title": "Scroll percent",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/scroll-percent",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Scroll percent",
+  "MetaDescription": "Opens after scrolling 25 percent.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll about a quarter of the way down this page. The dialog opens at 25 percent.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Scroll percent"
+}

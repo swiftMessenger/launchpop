@@ -1,0 +1,21 @@
+{% comment %}
+    Inputs:
+        no_header_or_footer_markup - As per MPSS1 standards, will disable output of whole footer.
+{% endcomment -%}
+{%- unless no_header_or_footer_markup -%}
+    <footer class="bg-primary">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col p-2 text-white d-flex align-items-center justify-content-start">
+                    Copyright &copy; {{request.year}} - {{ site.name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {%- powered_by light -%}
+                </div>
+            </div>
+        </div>
+    </footer>
+{%- endunless -%}
+</body></html>

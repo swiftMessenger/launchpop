@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Any distance or delay",
+  "Title": "Any distance or delay",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/any-distance-or-delay",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Any distance or delay",
+  "MetaDescription": "Any mode: scrolling 300 pixels opens the dialog before the delay.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Scroll 300 pixels, or wait 20 seconds. The scroll opens the dialog first.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Any distance or delay"
+}

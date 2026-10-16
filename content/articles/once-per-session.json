@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Once per session",
+  "Title": "Once per session",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/once-per-session",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Once per session",
+  "MetaDescription": "Opens once per tab session.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The first view opens the dialog. Reload the page. It stays closed for the rest of this tab session.</p>",
+  "launchpop_item": "Once per session"
+}

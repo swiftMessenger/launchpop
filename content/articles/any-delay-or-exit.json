@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Any delay or exit",
+  "Title": "Any delay or exit",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/any-delay-or-exit",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Any delay or exit",
+  "MetaDescription": "Any mode: exit opens the dialog before the delay ends.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>A 15 second delay and exit are both set. Leave through the top of the window. The dialog opens without waiting 15 seconds.</p>",
+  "launchpop_item": "Any delay or exit"
+}

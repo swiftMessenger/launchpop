@@ -1,0 +1,13 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Hide large",
+  "Title": "Hide large",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "hide-large",
+  "breakpoints_to_exclude": [
+    "large"
+  ]
+}

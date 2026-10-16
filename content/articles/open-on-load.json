@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Open on load",
+  "Title": "Open on load",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/open-on-load",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Open on load",
+  "MetaDescription": "Opens as soon as the page loads.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The dialog opens as soon as the page loads. No trigger is set.</p>",
+  "launchpop_item": "Open on load"
+}

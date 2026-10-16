@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Default 2",
+  "Title": "Default 2",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/sample-default-2",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Default 2",
+  "MetaDescription": "Opens on load because its delay is 0.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The delay field is blank, so this sample opens on load.</p>",
+  "launchpop_item": "Default 2"
+}

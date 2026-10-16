@@ -1,0 +1,13 @@
+{
+  "Name": "Default",
+  "Title": "Default",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "scroll_percent": "30",
+  "scroll_relative_to_footer": true,
+  "exit_intent": true,
+  "id": "1222",
+  "$ObjectType": "DatastoreItem",
+  "trigger_mode": "any"
+}

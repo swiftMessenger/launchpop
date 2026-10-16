@@ -1,0 +1,10 @@
+{
+  "GUID": "31a5ed2d-6ed6-4251-afbb-a627f5be7c90",
+  "Name": "/launchpop/v1/launchpop.js",
+  "FileGUID": null,
+  "Minify": true,
+  "ParseLiquid": false,
+  "PreIncludes": null,
+  "PostIncludes": null,
+  "$ObjectType": "Javascript"
+}

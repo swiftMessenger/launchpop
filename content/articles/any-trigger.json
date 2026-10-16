@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Any trigger",
+  "Title": "Any trigger",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/any-trigger",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Any trigger",
+  "MetaDescription": "Opens on scroll or after 30 seconds.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>A 30 second delay and a 40 percent scroll are both set. Scrolling opens the dialog without waiting for the delay.</p>\n<div style=\"min-height: 1600px\"></div>",
+  "launchpop_item": "Any trigger"
+}

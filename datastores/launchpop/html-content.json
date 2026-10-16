@@ -1,0 +1,10 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "HTML content",
+  "Title": "HTML content",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "html",
+  "trigger_mode": "any",
+  "id": "html-content",
+  "html_content": "<p>This dialog is the HTML content.</p>"
+}

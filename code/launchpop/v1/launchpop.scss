@@ -1,0 +1,78 @@
+/* LaunchPop dialog. No variables or framework.
+   To bundle it, import this at the end of /main.scss and pass omit_launchpop_css:true. */
+
+.launchpop- {
+  &overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+
+    &[aria-hidden="false"] {
+      display: flex;
+    }
+  }
+
+  &wrapper {
+    background: #fff;
+    border-radius: 12px;
+    max-width: min(90vw, 650px);
+    max-height: min(80vh, 600px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+    animation: launchpop-fade-in 0.3s ease-out;
+  }
+
+  &close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, .9);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &content {
+    padding: 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  &img {
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+@keyframes launchpop-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

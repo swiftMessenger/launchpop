@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Idle",
+  "Title": "Idle",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/idle",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Idle",
+  "MetaDescription": "Opens after 5 seconds without activity.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Do not move, type, scroll, or tap for 5 seconds. Moving the pointer starts the wait over.</p>",
+  "launchpop_item": "Idle"
+}

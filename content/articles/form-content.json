@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Form content",
+  "Title": "Form content",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/form-content",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Form content",
+  "MetaDescription": "Opens on load with the subscribe form.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>The dialog contains the subscribe form.</p>",
+  "launchpop_item": "Form content"
+}

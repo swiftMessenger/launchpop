@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "All delay and exit",
+  "Title": "All delay and exit",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/all-delay-and-exit",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "All delay and exit",
+  "MetaDescription": "All mode: both the delay and exit are required.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Wait 5 seconds and leave through the top. Leaving before 5 seconds stays closed. After 5 seconds it stays closed until you leave through the top.</p>",
+  "launchpop_item": "All delay and exit"
+}

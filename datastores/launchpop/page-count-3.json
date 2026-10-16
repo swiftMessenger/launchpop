@@ -1,0 +1,11 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Page count 3",
+  "Title": "Page count 3",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "page-count-3",
+  "min_pages": "3"
+}

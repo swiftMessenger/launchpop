@@ -1,0 +1,70 @@
+{%- comment -%}
+	Outputs a LaunchPop modal from a datastore item.
+	A page limit can omit the dialog. Otherwise it stays hidden until /launchpop/v1/launchpop.js opens it.
+	Inputs:
+		item - LaunchPop datastore item to render
+		omit_launchpop_js - true to prevent the launchpop javascript from being added. Assign it in the header, or pass it on the include, once /launchpop/v1/launchpop.js is in the main script's Post-Includes.
+		omit_launchpop_css - true to prevent the launchpop stylesheet from being added. Assign it in the header, or pass it on the include, once /launchpop/v1/launchpop.scss is imported by the main stylesheet.
+{%- endcomment -%}
+{%- if item.is_valid and item.object_type == "datastore_item" and item.datastore.name == "LaunchPop" -%}
+	{%- var should_show = true -%}
+	{%- if item.min_pages.is_valid or item.max_pages.is_valid -%}
+		{%- if session.allowed -%}
+			{%- var page_number = session.num_pages -%}
+			{%- if item.min_pages.is_valid and page_number < item.min_pages -%}
+				{%- set should_show = false -%}
+			{%- elsif item.max_pages.is_valid and page_number > item.max_pages -%}
+				{%- set should_show = false -%}
+			{%- endif -%}
+		{%- endif -%}
+	{%- endif -%}
+	{%- if should_show -%}
+		{%- capture content -%}
+			{%- case item.content_type.value -%}
+				{%- when "image" -%}
+					{%- if item.popup_image.is_valid -%}
+						{%- img item.popup_image class:"launchpop-img" preset:"launchpop-modal" link:false loading:"lazy" -%}
+					{%- endif -%}
+				{%- when "html" -%}
+					{%- if item.html_content.is_valid -%}
+						<div class="launchpop-content">{{ item.html_content }}</div>
+					{%- endif -%}
+				{%- when "form" -%}
+					<div class="launchpop-content">
+						{%- if item.form_title.is_valid -%}
+							<h2 class="fw-bold mb-3">{{ item.form_title }}</h2>
+						{%- endif -%}
+						{%- if item.form_description.is_valid -%}
+							<p class="mb-4">{{ item.form_description }}</p>
+						{%- endif -%}
+						{%- if item.popup_form.is_valid -%}
+							{{ item.popup_form }}
+						{%- endif -%}
+					</div>
+			{%- endcase -%}
+		{%- endcapture -%}
+		{%- if content is_valid -%}
+			{%- unless omit_launchpop_js %}{% add_javascript "/launchpop/v1/launchpop.js" position:'body' defer:true %}{% endunless -%}
+			{%- unless omit_launchpop_css %}{% add_stylesheet "/launchpop/v1/launchpop.scss" %}{% endunless -%}
+			{%- var popup_key = item.id.value | strip %}{% unless popup_key is_valid %}{% set popup_key = item.name | classname %}{% endunless -%}
+			{%- var trigger_mode = item.trigger_mode.value | default: "any" -%}
+			<div class="launchpop-overlay" data-launchpop-id="{{ popup_key | escape }}" data-launchpop-trigger-mode="{{ trigger_mode }}"
+				{%- if session.allowed %} data-launchpop-session="{{ session.id | escape }}"{% endif -%}
+				{%- if item.scroll_percent.is_valid %} data-launchpop-scroll-percent="{{ item.scroll_percent.value }}"{% endif -%}
+				{%- if item.scroll_pixels.is_valid %} data-launchpop-scroll-pixels="{{ item.scroll_pixels.value }}"{% endif -%}
+				{%- if item.scroll_relative_to_footer.checked %} data-launchpop-scroll-relative-to-footer="true"{% endif -%}
+				{%- if item.delay_seconds.is_valid %} data-launchpop-delay-seconds="{{ item.delay_seconds.value }}"{% endif -%}
+				{%- if item.exit_intent.checked %} data-launchpop-exit-intent="true"{% endif -%}
+				{%- if item.inactivity_seconds.is_valid %} data-launchpop-inactivity-seconds="{{ item.inactivity_seconds.value }}"{% endif -%}
+				{%- if item.minutes_limit.is_valid %} data-launchpop-minutes-limit="{{ item.minutes_limit.value }}"{% endif -%}
+				{%- if item.shown_limit.is_valid %} data-launchpop-max-limit="{{ item.shown_limit.value }}"{% endif -%}
+				{%- if item.breakpoints_to_exclude.is_valid %}{% for bp in item.breakpoints_to_exclude.selected %} data-launchpop-hide-{{ bp }}="true"{% endfor %}{% endif -%}
+				role="dialog" aria-modal="true" aria-hidden="true">
+				<div class="launchpop-wrapper">
+					<button class="launchpop-close" type="button" aria-label="Close" data-launchpop-close="true">&times;</button>
+					{{ content }}
+				</div>
+			</div>
+		{%- endif -%}
+	{%- endif -%}
+{%- endif -%}

@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Shared limit first",
+  "Title": "Shared limit first",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/shared-limit-first",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Shared limit first",
+  "MetaDescription": "Records the shared id.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>This opens immediately and records the shared id. Then open <a href=\"/launchpop/shared-limit-second\">Shared limit, second</a>. That one stays closed.</p>",
+  "launchpop_item": "Shared limit first"
+}

@@ -1,0 +1,10 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Open on load",
+  "Title": "Open on load",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "open-on-load"
+}

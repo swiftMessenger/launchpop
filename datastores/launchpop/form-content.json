@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Form content",
+  "Title": "Form content",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "form",
+  "trigger_mode": "any",
+  "id": "form-content",
+  "form_title": "Subscribe",
+  "form_description": "This dialog is the form content.",
+  "popup_form": "form"
+}

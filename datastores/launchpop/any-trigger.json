@@ -1,0 +1,12 @@
+{
+  "$ObjectType": "DatastoreItem",
+  "Name": "Any trigger",
+  "Title": "Any trigger",
+  "DatastoreGUID": "LaunchPop",
+  "content_type": "image",
+  "popup_image": "1131w-4V_IgoozgPc.webp",
+  "trigger_mode": "any",
+  "id": "any-trigger",
+  "scroll_percent": "40",
+  "delay_seconds": "30"
+}

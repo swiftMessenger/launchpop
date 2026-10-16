@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Hide large",
+  "Title": "Hide large",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/hide-large",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Hide large",
+  "MetaDescription": "Stays closed at 1200 pixels wide and above.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>At 1200 pixels wide and above, the dialog stays closed. Narrow the window below that and it opens.</p>",
+  "launchpop_item": "Hide large"
+}

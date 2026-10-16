@@ -1,0 +1,15 @@
+{
+  "$ObjectType": "Article",
+  "Name": "Delay",
+  "Title": "Delay",
+  "URL": "//launch-pop-modal.live01.dev.marketpath.site/launchpop/delay",
+  "TemplateGUID": "/launchpop-test",
+  "BrowserTitle": "Delay",
+  "MetaDescription": "Opens after 5 seconds.",
+  "Keywords": "",
+  "MetaRobots": "",
+  "IncludeInSearch": false,
+  "PostDate": "2026-10-16 12:00:00.000",
+  "ContentHTML": "<p>Wait 5 seconds without scrolling. The dialog opens on the delay alone.</p>",
+  "launchpop_item": "Delay"
+}
