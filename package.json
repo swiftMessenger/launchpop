@@ -1,17 +1,10 @@
 {
   "name": "launchpop",
-  "version": "1.0.0",
-  "description": "LaunchPop popup trigger library",
-  "main": "launchpop.js",
+  "version": "2.0.0",
+  "description": "LaunchPop popup trigger library and Marketpath CMS demo site",
+  "main": "code/launchpop/v1/launchpop.js",
   "scripts": {
-    "test": "jest"
+    "test": "node --test --test-concurrency=1 tests/launchpop.test.js"
   },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "clearMocks": true
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
-  }
+  "license": "UNLICENSED"
 }
