@@ -1,167 +1,111 @@
 # launchpop
 
-LaunchPop is a lightweight, framework-agnostic JavaScript library for showing accessible popups (modals) based on flexible triggers.
+LaunchPop shows one accessible popup from `data-launchpop-*` attributes or from `launchpop.register()`.
+
+Version 2 changes two defaults from 1.x:
+
+- Several automatic triggers open on the first one. Set `data-launchpop-trigger-mode="all"` when every trigger must happen.
+- Minutes and maximum shows are stored together in `localStorage` under the key `launchpop`, and that record is shared by every tab. Version 1 keys (`launchpop_lastShown_*` and `launchpop_sessionCount_*`) are not read.
 
 ## Quick start
 
-Include the script and mark up a popup with `data-launchpop-id`:
-
 ```html
-<div id="newsletter" data-launchpop-id="newsletter" aria-label="Newsletter signup" aria-role="modal" aria-hidden="true">
+<div id="newsletter" data-launchpop-id="newsletter" aria-label="Newsletter signup" role="dialog" aria-hidden="true">
   <button data-launchpop-close>&times;</button>
-  ...
 </div>
 
 <button data-launchpop-triggers="newsletter">Open newsletter</button>
 
-<script src="/path/to/launchpop.js"></script>
+<script src="code/launchpop/v1/launchpop.js"></script>
 ```
 
-By default the library auto-initializes on `DOMContentLoaded` and connects any elements that declare matching `data-launchpop-triggers` attributes. To opt out of auto-init (for example, when hydrating after a SPA render or for optimizing browser performance), set a flag before loading the script or add an attribute to the script tag:
+The script initializes on `DOMContentLoaded`. Opt out before it loads:
 
 ```html
 <script>window.LAUNCHPOP_AUTO_INIT = false;</script>
-<script src="/path/to/launchpop.js" data-launchpop-auto-init="false"></script>
-
+<script src="code/launchpop/v1/launchpop.js" data-launchpop-auto-init="false"></script>
 <script>
-  // Later, when ready
   launchpop.init();
 </script>
 ```
 
-## Core Concepts
-Each popup is represented by a launchpop instance, created via:
-- DOM attributes on an element: `data-launchpop-id="some-id"`
-- Or directly via `launchpop.register(...)`
+## Triggers
 
-Each instance has:
-- Configuration data:
-  - `id` - Used for frequency limits and click triggers. The same id may be used by multiple popups
-  - `element` - The modal element to be shown/hidden
-  - Information about the **triggers** and **limits**
-  - `role` - The aria role to use for the modal
-  - `closeOnEsc` - Whether the modal should be closed when the escape key is pressed
-  - `active` - Whether the instance is currently displayed
-  - `shown` - Whether the instance has been shown
-  - `disabled` - Whether the instance is currently disabled
-- Functions
-  - `show(context)` - Shows the popup. This may be used to show the popup even if it is currently disabled. Pass in a context object to use it in the event handlers or exclude it to use the default context
-  - `hide(context)` - Hides the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
-  - `disable(context)` - Disables the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
-  - `restore(context)` - Enables the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
-  - `destroy(closeAndRemoveDomNode)` - Permanently deletes the instance and cleans up all related resources. If `closeAndRemoveDomNode` is true, the modal element will be removed from the DOM. Note that if the popup is currently active and `closeAndRemoveDomNode` is NOT true, then the modal may remain displayed even after being cleaned up
-  - `tryShow(context)` - Checks if all of the triggers and limits have been satisfied and this instance is not disabled and has not already been shown, in which case it will show the popup. Pass in a context object to use it in the event handlers or exclude it to use the default context
-  - `on(eventName, handler)` - Attach an event listener to the instance. The built-in events are:
-    - `show` - Fired immediately after the modal is displayed
-    - `hide` - Fired immediately after the modal is hidden
-    - `disable` - Fired immediately after the modal is disabled. Note that this is NOT fired when all modals are disabled using `launchpop.disable()`
-    - `restore` - Fired immediately after the modal is restored. Note that this is NOT fired when all modals are restored using `launchpop.restore()`
-    - `destroy` - Fired immediately before the modal is destroyed
-  - `off(eventName, handler)` - Detach an event listener from the instance
-  - `emit(eventName, context)` - Executes the event handlers for the specified event using the provided context
+Automatic triggers are scroll percent, scroll pixels, delay, exit intent, and idle. A missing, blank, or zero value is not a trigger. With no automatic trigger and no click selector, the popup opens on load.
 
-Additionally, the global launchpop object has the following methods:
-- `init(options)` - Initializes the launchpop library with the specified options. Possible options include:
-  - `root` - The root node to check for launchpop instances to initialize. Defaults to the document body
-  - `autoAttachTriggers` - Whether or not click event triggers should automatically be attached to new instances by default
-  - `footerSelector` - The query selector to use for the document footer, used by popups with scroll_relative_to_footer set to true
-  - `breakpoints` - An object containing the small/medium/large breakpoints to use when interpreting the breakpoint limits
-    - `smallMax` - The largest screen width to interpret as a "small" device
-    - `mediumMax` - The largest screen width to interpret as a "medium" device
-- `register(options)` -
-- `disable(context)` - Globally disbales all launchpop instances
-- `restore()` - Globally restores all launchpop instances
-- `on(eventName, handler)` - Attach an event listener to the global launchpop object. The built-in events are:
-  - `show` - Triggered after any launchpop instance is shown
-  - `hide` - Triggered after any launchpop instance is hidden
-  - `disable` - Triggered after `launchpop.disable()` is run
-  - `restore` - Triggered after `launchpop.restore()` is run
-- `off` - Detach an event listener from the instance
-- `getDefaults()` - Gets the global settings for all launchpop objects
-  - `autoAttachTriggers`
-  - `footerSelector`
-  - `breakpoints`
-    - `smallMax`
-    - `mediumMax`
-- `setDefaults(partial)` - Updates the global settings for all launchpop objects
+`any` is the default. `all` waits until every configured automatic trigger has happened:
 
-## Registering popups in JavaScript
+```html
+<div
+  data-launchpop-id="both"
+  data-launchpop-trigger-mode="all"
+  data-launchpop-scroll-percent="50"
+  data-launchpop-delay-seconds="5"
+  aria-hidden="true"></div>
+```
 
-If you prefer JavaScript configuration instead of data attributes, call `launchpop.register`:
+The same switch is `triggerMode: "all"` in `launchpop.register()`.
+
+Click is separate. A `data-launchpop-click-selector` opens immediately, including after the popup has been closed. It still respects screen size. It does not wait for the automatic triggers, and the time and view-count limits do not block it. If the screen size excludes the popup, a click on a link is left alone so the link can navigate.
+
+Scroll percent and scroll distance measure the document. A page that cannot scroll satisfies a scroll trigger immediately.
+
+```js
+launchpop.setDefaults({ scrollSelector: ".main-scroll" });
+```
+
+When that selector matches an element, scroll is measured on that element. A blank value, or a selector that matches nothing, keeps the document.
+
+`data-launchpop-scroll-relative-to-footer` measures the percent or pixel distance until the footer meets the bottom of the viewport. The default footer selector is `footer`. A popup can set `data-launchpop-footer-selector`.
+
+## Limits
+
+- `data-launchpop-minutes-limit` — do not auto-open if this id was shown in the last N minutes.
+- `data-launchpop-max-limit` — do not auto-open after this id has been shown N times in the current visit.
+- `data-launchpop-hide-small`, `data-launchpop-hide-medium`, `data-launchpop-hide-large` — skip that screen size. Small is at or below 767, medium is at or below 1199 and above small, and large is wider. Resize checks again.
+
+`launchpop.show()` and a click skip the minute and count limits.
+
+When the page includes `data-launchpop-session`, that value is the visit. A Marketpath template writes it from the CMS session. Without it, a visit lasts until an hour after the last page that loaded this script. A new visit starts the counts over.
+
+## JavaScript
 
 ```js
 const instance = launchpop.register({
   id: "newsletter",
   element: document.getElementById("newsletter"),
-  triggers: {
-    delay_seconds: 5
-  }
+  triggers: { delay_seconds: 5 }
 });
 ```
 
-`register` returns the instance so you can manage its lifecycle:
+Instance methods: `show`, `hide`, `disable`, `restore`, `destroy`, `tryShow`, `on`, `off`. `destroy()` does not remove the element from the page.
 
-- `instance.show()` / `instance.hide()` — control visibility imperatively.
-- `instance.disable()` / `instance.restore()` — temporarily pause or re-enable triggers.
-- `instance.destroy()` — fully detach listeners and remove the instance from the registry.
-
-## Trigger options
-
-All triggers are optional and can be mixed:
-
-- `scroll_percent`: number between `0`–`100` indicating the percent of page scroll before showing.
-- `scroll_pixels`: number of pixels to scroll before showing.
-- `scroll_relative_to_footer`: percent of the distance from the bottom of the viewport to the footer (or custom selector via `footerSelector`).
-- `delay_seconds`: delay after page load.
-- `exit_intent`: show when the user moves the cursor toward the browser chrome.
-- `inactivity_seconds`: show after the user has been idle for the given duration.
-- `click_selector`: CSS selector to bind elements that open the popup when clicked.
-
-If more than one trigger are specified, the popup will only be shown once *all* of the triggers _(except the click trigger)_ have been satisfied.
-
-If no triggers are specified, the popup will be shown immediately.
-
-## Limits
-
-Limits are optional, apply to all of the triggers except the click trigger, and can be mixed:
-
-- `minutes`: Do not show the popup if has already been shown in the specified number of minutes
-- `max`: Do not show the popup if it has already been shown the specified number of times in the current session
-- `breakpoints`: Do not show the popup at the specified breakpoints (eg: do not show at "small" breakpoints)
-
-Note that the limits are ignored for click triggers, so popups may still be shown if they are triggered by a click event or by `instance.show()`.
-
-## Global configuration
-
-Call `launchpop.setDefaults` to adjust behavior for all subsequent `init` calls:
+Global methods: `init`, `register`, `disable`, `restore`, `on`, `off`, `getDefaults`, `setDefaults`.
 
 ```js
 launchpop.setDefaults({
-  autoAttachTriggers: true,
+  autoAttachTriggers: false,
   footerSelector: "footer",
-  breakpoints: { smallMax: 640, mediumMax: 1024 }
+  scrollSelector: "",
+  breakpoints: { smallMax: 767, mediumMax: 1199 }
 });
+launchpop.init();
 ```
 
-You can also listen to global events:
+`init({ root, autoAttachTriggers, breakpoints })` scans for `[data-launchpop-id]`. `init({})` sets `autoAttachTriggers` to false. Set `footerSelector` and `scrollSelector` with `setDefaults`.
 
-```js
-launchpop.on("show", ({ instance, trigger }) => {
-  console.log("Popup shown:", instance.id, "via", trigger);
-});
+Events on an instance and on `launchpop`: `show`, `hide`, `disable`, `restore`, `destroy`.
+
+## Marketpath CMS
+
+This repository is also a portable Marketpath site package. The dialog partial is `code/launchpop/v1/_launchpop.liquid`. The editor fields are the `LaunchPop` datastore. Demo pages live under `content/articles/`. The demo shell loads Bootstrap 5.2.3 from the CDN in `code/_header.liquid`.
+
+To bundle the assets on a site that already has its own stylesheet and script, import `/launchpop/v1/launchpop.scss` from the site stylesheet and add `/launchpop/v1/launchpop.js` to the main script's post-includes, then set `omit_launchpop_css` and `omit_launchpop_js` before the partial runs.
+
+## Tests
+
+```powershell
+npm test
 ```
 
-## Testing
-
-LaunchPop ships with a small Jest suite to guard against regressions in trigger logic and DOM parsing.
-
-1. Install dependencies: `npm install`
-2. Run the suite: `npm test`
-
-Tests run in jsdom, so no browser is required. If you add new features or change defaults, include a focused test that covers the behavior to keep future changes safe.
-
-## DOM-only initialization
-
-If you rely entirely on markup, call `launchpop.init()` to scan for `[data-launchpop-id]` elements. When `autoAttachTriggers` is true, elements with `data-launchpop-triggers="<id>"` are automatically bound to matching popups.
-
-For best results, add aria-role="modal" and aria-hidden="true" to the main popup element, which will help with accessibility for content that will be hidden on pageload.
+The suite uses Node's built-in test runner. There are no npm dependencies.
