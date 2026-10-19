@@ -17,8 +17,15 @@
 - Keep the public markup attributes stable. A new behavior that changes `any` versus `all`, storage keys, or click `preventDefault` is a major version.
 - Update `README.md` when the public API or a default changes.
 
+## Home site
+
+- Name: `LaunchPop`
+- GUID: `f5112415-64d3-44fb-b33b-defc928d3ddd`
+- Domain: `launch-pop-modal.live01.dev.marketpath.site`
+- Stamp label: `launchpop`
+
 ## CMS package
 
 - Do not invent GUIDs. Do not hand-edit `.guid-map.json` or `.name-map.json`.
-- Do not commit `artifacts/` or `.import-stamp.*.json`.
+- Do not commit `artifacts/`. Commit `.import-stamp.launchpop.json`. It is the baseline for the home site.
 - Demo CDN stylesheet and script URLs are absolute `https://` URLs with no slash before the scheme.
