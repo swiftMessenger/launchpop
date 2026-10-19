@@ -14,6 +14,9 @@
     ],
     "/generic-page": [
       "code/generic-page.json"
+    ],
+    "/launchpop/v1/_launchpop_selector.liquid": [
+      "code/launchpop/v1/_launchpop_selector.json"
     ]
   },
   "Datastore": {
