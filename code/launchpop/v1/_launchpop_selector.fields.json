@@ -1,0 +1,9 @@
+[
+  {
+    "Type": "datastoreitem",
+    "FieldID": "popup_message",
+    "Label": "Popup Message",
+    "Subtext": "Leave this empty for a page with no popup. Only LaunchPop items are listed.",
+    "DatastoreGUID": "LaunchPop"
+  }
+]

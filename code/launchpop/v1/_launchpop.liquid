@@ -5,6 +5,8 @@
 		item - LaunchPop datastore item to render
 		omit_launchpop_js - true to prevent the launchpop javascript from being added. Assign it in the header, or pass it on the include, once /launchpop/v1/launchpop.js is in the main script's Post-Includes.
 		omit_launchpop_css - true to prevent the launchpop stylesheet from being added. Assign it in the header, or pass it on the include, once /launchpop/v1/launchpop.scss is imported by the main stylesheet.
+	Outputs:
+		launchpop_output_to_template - set to true when the dialog is rendered. Left unchanged when it is not.
 {%- endcomment -%}
 {%- if item.is_valid and item.object_type == "datastore_item" and item.datastore.name == "LaunchPop" -%}
 	{%- var should_show = true -%}
@@ -65,6 +67,7 @@
 					{{ content }}
 				</div>
 			</div>
+			{%- set launchpop_output_to_template = true -%}
 		{%- endif -%}
 	{%- endif -%}
 {%- endif -%}

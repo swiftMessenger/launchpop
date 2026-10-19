@@ -1,0 +1,6 @@
+{%- comment -%}
+	Allows the user to select a popup for the current page.
+	Custom Fields:
+		popup_message - LaunchPop item chosen on the page. An empty selection is ignored by /launchpop/v1/_launchpop.liquid.
+{%- endcomment -%}
+{%- include "/launchpop/v1/_launchpop.liquid" item:entity.popup_message -%}

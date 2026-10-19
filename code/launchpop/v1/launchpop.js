@@ -21,6 +21,10 @@
  * this script. Automatic opens honor the limits. A click still opens the
  * popup, unless the screen size excludes it.
  *
+ * At most one popup opens automatically on a page. Raise or remove that cap
+ * with launchpop.setDefaults({ maxPerPage: 3 }) or { maxPerPage: 0 }.
+ * A click and launchpop.show() are not counted.
+ *
  * Scroll percent and scroll distance measure the document. Set
  * launchpop.setDefaults({ scrollSelector: ".main-scroll" }) before init to
  * measure that element instead. A blank selector, or one that matches
@@ -65,6 +69,7 @@
     autoAttachTriggers: false,
     footerSelector: "footer",
     scrollSelector: "",
+    maxPerPage: 1,
     breakpoints: {
       smallMax: 767,
       mediumMax: 1199
@@ -832,12 +837,18 @@
     writeSessionRecord(record);
   };
 
+  // Automatic opens on this page. A click or show() does not count, and 0 disables the cap.
+  var autoShownCount = 0;
+
   // Auto triggers, resize, and the on-load path come through here.
   LaunchPop.prototype.tryShow = function () {
     if (!this._canAutoOpen()) return;
     if (!this._autoTriggersSatisfied()) return;
     if (!this._passesLimits()) return;
+    var limit = positiveInt(globalOptions.maxPerPage, null);
+    if (limit != null && autoShownCount >= limit) return;
     this.show(this._lastTriggerContext || { trigger: "auto", nativeEvent: null, source: "auto" });
+    if (this.isOpen) autoShownCount += 1;
   };
 
   LaunchPop.prototype._attachCloseHandler = function () {
@@ -1138,6 +1149,7 @@
       autoAttachTriggers: globalOptions.autoAttachTriggers,
       footerSelector: globalOptions.footerSelector,
       scrollSelector: globalOptions.scrollSelector,
+      maxPerPage: globalOptions.maxPerPage,
       breakpoints: {
         smallMax: globalOptions.breakpoints.smallMax,
         mediumMax: globalOptions.breakpoints.mediumMax
@@ -1149,6 +1161,7 @@
     if (!partial || typeof partial !== "object") return;
     if ("autoAttachTriggers" in partial) globalOptions.autoAttachTriggers = !!partial.autoAttachTriggers;
     if ("footerSelector" in partial) globalOptions.footerSelector = partial.footerSelector;
+    if ("maxPerPage" in partial) globalOptions.maxPerPage = partial.maxPerPage;
     if ("scrollSelector" in partial) {
       globalOptions.scrollSelector = partial.scrollSelector == null ? "" : String(partial.scrollSelector);
       if (scrollListenTarget) {

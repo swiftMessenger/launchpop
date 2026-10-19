@@ -751,12 +751,14 @@ scenario("medium and large exclusions follow 1199 and 1200", function (env, lib)
   env.window.innerWidth = 1200;
   medium.setAttribute("aria-hidden", "true");
   large.setAttribute("aria-hidden", "true");
+  lib.setDefaults({ maxPerPage: 0 });
   lib.init();
   assert.equal(opened(medium), true);
   assert.equal(opened(large), false);
 });
 
 scenario("only one dialog is visible", function (env, lib) {
+  lib.setDefaults({ maxPerPage: 0 });
   var reasons = [];
   lib.on("hide", function (payload) { reasons.push(payload.trigger); });
   var first = mount(env, dialog({ "data-launchpop-id": "one" }));
@@ -765,6 +767,66 @@ scenario("only one dialog is visible", function (env, lib) {
   assert.equal(opened(first), false);
   assert.equal(opened(second), true);
   assert.deepEqual(reasons, ["superseded"]);
+});
+
+scenario("only one popup opens automatically on a page", function (env, lib) {
+  var first = mount(env, dialog({ "data-launchpop-id": "first" }));
+  var second = mount(env, dialog({ "data-launchpop-id": "second" }));
+  lib.init();
+  assert.equal(opened(first), true);
+  assert.equal(opened(second), false);
+  assert.equal(lib.getDefaults().maxPerPage, 1);
+});
+
+scenario("raising maxPerPage allows that many automatic opens", function (env, lib) {
+  lib.setDefaults({ maxPerPage: 2 });
+  mount(env, dialog({ "data-launchpop-id": "first" }));
+  var second = mount(env, dialog({ "data-launchpop-id": "second" }));
+  lib.init();
+  assert.equal(lib._instances[0].hasOpened, true);
+  assert.equal(lib._instances[1].hasOpened, true);
+  assert.equal(opened(second), true);
+});
+
+scenario("a zero maxPerPage removes the automatic page limit", function (env, lib) {
+  lib.setDefaults({ maxPerPage: 0 });
+  mount(env, dialog({ "data-launchpop-id": "first" }));
+  mount(env, dialog({ "data-launchpop-id": "second" }));
+  lib.init();
+  assert.equal(lib._instances[0].hasOpened, true);
+  assert.equal(lib._instances[1].hasOpened, true);
+});
+
+scenario("a later automatic trigger stays closed after the page limit is met", function (env, lib) {
+  env.html.scrollHeight = 5000;
+  env.html.offsetHeight = 5000;
+  env.window.innerHeight = 800;
+  var first = mount(env, dialog({ "data-launchpop-id": "first" }));
+  var second = mount(env, dialog({
+    "data-launchpop-id": "second",
+    "data-launchpop-scroll-percent": "50"
+  }));
+  lib.init();
+  lib._instances[0].hide();
+  assert.equal(opened(first), false);
+  env.window.pageYOffset = 2100;
+  env.window.dispatch("scroll");
+  assert.equal(opened(second), false);
+});
+
+scenario("a click can open another popup after the page limit is met", function (env, lib) {
+  mount(env, dialog({ "data-launchpop-id": "first" }));
+  var button = element("button", { "class": "open-second" });
+  mount(env, button);
+  var second = mount(env, dialog({
+    "data-launchpop-id": "second",
+    "data-launchpop-click-selector": ".open-second",
+    "data-launchpop-delay-seconds": "30"
+  }));
+  lib.init();
+  assert.equal(opened(second), false);
+  button.dispatch("click");
+  assert.equal(opened(second), true);
 });
 
 scenario("the close button, overlay, and Escape key close the dialog", function (env, lib) {
